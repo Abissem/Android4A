@@ -1,7 +1,6 @@
 package com.example.android4a.data.repository
 
 import com.example.android4a.data.local.DatabaseDao
-import com.example.android4a.data.local.models.UserLocal
 import com.example.android4a.data.local.models.toData
 import com.example.android4a.data.local.models.toEntity
 import com.example.android4a.domain.entity.User
@@ -13,8 +12,8 @@ class UserRepository(
         databaseDao.insert(user.toData())
     }
 
-    fun getUser(email: String) : User? {
-        val userLocal = databaseDao.findByName(email)
+    fun getUser(email: String, password: String) : User? {
+        val userLocal = databaseDao.findByName(email, password)
         return userLocal?.toEntity()
     }
 }
