@@ -1,8 +1,10 @@
 package com.example.android4a.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.example.android4a.DisplayListActivity
 import com.example.android4a.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
             when(it){
                 is LoginSuccess ->{
                     //TODO Navigate
+                    val intent = Intent(this, DisplayListActivity::class.java)
+                    startActivity(intent)
                 }
                     LoginError -> {
                         MaterialAlertDialogBuilder(this)
@@ -32,8 +36,13 @@ class MainActivity : AppCompatActivity() {
                     }
             }
         })
+
         login_button.setOnClickListener {
-            mainViewModel.onClickedLogin(login_edit.text.toString().trim())
+            mainViewModel.onClickedLogin(login_edit.text.toString().trim(), password_edit.text.toString().trim())
+        }
+
+        create_account_button.setOnClickListener {
+            mainViewModel.onClickedCreate(login_edit.text.toString().trim(), password_edit.text.toString().trim())
         }
     }
 }
