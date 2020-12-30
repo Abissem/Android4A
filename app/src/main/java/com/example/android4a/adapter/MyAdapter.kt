@@ -5,17 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android4a.R
-import com.example.android4a.domain.entity.Post
+import com.example.android4a.domain.entity.Episode
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
 
-    private var myList = emptyList<Post>()
+    private var myList = emptyList<Episode>()
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context). inflate(R.layout.row_layout, parent, false))
+        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_layout, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -23,13 +23,13 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemView.userId_txt.text = myList[position].userId.toString()
-        holder.itemView.id_txt.text = myList[position].id.toString()
-        holder.itemView.title_txt.text = myList[position].title
-        holder.itemView.body_txt.text = myList[position].body
+        holder.itemView.title_txt.text = "Title: " + myList[position].title.toString()
+        holder.itemView.episode_number_txt.text = "Episode: " + myList[position].episode.toString()
+        holder.itemView.synopsis_txt.text = "Synopsis: " + myList[position].description.toString()
+        holder.itemView.dysney_url.text = "Disneyplus url: " + myList[position].disneyplus_url.toString()
     }
 
-    fun setData(newList: List<Post>){
+    fun setData(newList: List<Episode>){
         myList = newList
         notifyDataSetChanged()
     }

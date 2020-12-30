@@ -11,8 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android4A">
-        <activity android:name=".presentation.main.DisplayListActivity"></activity>
+        android:theme="@style/Theme.Android4A.NoActionBar">
+        <activity android:name=".presentation.list.DisplayListActivity"></activity>
         <activity android:name=".presentation.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

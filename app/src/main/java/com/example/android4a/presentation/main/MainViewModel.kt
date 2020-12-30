@@ -8,6 +8,7 @@ import com.example.android4a.data.local.models.UserLocal
 import com.example.android4a.domain.entity.User
 import com.example.android4a.domain.usecase.CreateUserUseCase
 import com.example.android4a.domain.usecase.GetUserUseCase
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,13 +24,13 @@ class MainViewModel(
     fun onClickedLogin(emailUser: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val user = getUserUseCase.invoke(emailUser, password)
-            val loginStatus = if(user != null){
+            val loginStatus = if (user != null) {
                 LoginSuccess(user.email, user.password)
             } else {
                 LoginError
             }
 
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 loginLiveData.value = loginStatus
             }
         }
